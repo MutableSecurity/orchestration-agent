@@ -1,0 +1,24 @@
+# Local configuration file
+/.mutablesecurity
+
+# Symbolic link to the local MutableSecurity package
+agent/mutablesecurity
+
+# Local database with hosts (and API keys)
+.hosts
+
+# Poetry
+/.venv/
+/dist/
+/poetry.lock
+
+# Python
+**/__pycache__
+/.mypy_cache
+/.coverage
+
+# Pyinfra
+/pyinfra-sudo-askpass
+
+# Snyk
+/.dccache

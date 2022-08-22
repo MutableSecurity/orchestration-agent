@@ -1,0 +1,118 @@
+[tool.poetry]
+name = "agent"
+version = "0.1.0"
+description = "Orchestration agent"
+authors = [
+    "MutableSecurity <hello@mutablesecurity.io>"
+]
+repository = "https://github.com/MutableSecurity/orchestration-agent"
+homepage = "https://www.mutablesecurity.io"
+
+[tool.poetry.dependencies]
+Click = "^8.0"
+humanfriendly = "^10.0"
+packaging = "^21.3"
+pyinfra = "^2.2"
+pypattyrn = "^1.2"
+python = "^3.9"
+PyYAML = "6.0"
+requests = "^2.27.1"
+rich = "12.5.1"
+Pyrebase4 = "^4.5.0"
+Flask = "^2.2.2"
+
+[tool.poetry.scripts]
+agent = "agent.agent:main"
+hms = "agent.hms:main"
+
+[tool.poetry.dev-dependencies]
+black = "^22.1.0"
+coverage = {extras = ["toml"], version = "^6.4.2"}
+coveralls = "^3.3.1"
+flake8 = "^4.0.1"
+flake8-annotations = "^2.9.0"
+flake8-bandit = "^3.0.0"
+flake8-docstrings = "^1.6.0"
+flake8-print = "^5.0.0"
+flake8-quotes = "^3.3.1"
+flake8-spellcheck = "^0.28.0"
+flake8-tidy-imports = "^4.8.0"
+isort = "^5.10.1"
+mypy = "^0.971"
+pep8-naming = "^0.13.0"
+poethepoet = "^0.16.0"
+pyenchant = "^3.2.2"
+pylint = "^2.13.5"
+pyproject-flake8 = "^0.0.1-alpha.4"
+pytest = "^7.1.2"
+types-PyYAML = "^6.0.9"
+types-requests = "^2.27.30"
+
+[tool.black]
+line-length = 79
+preview = true
+include = '\.pyi?$'
+extend-exclude = """
+(
+    ^/.venv/*
+    ^/dist/*
+)
+"""
+
+[tool.flake8]
+exclude = ".venv"
+inline-quotes = "double"
+extend-ignore = "ANN101,D,Q000"
+per-file-ignores = """
+    # The __init__.py files only imports the modules defined in the package.
+    ./**/__init__.py: F401
+
+    # All the pytest unit tests use asserts.
+    ./tests/**: S101
+"""
+ban-relative-imports = true
+banned-modules = """
+    logging = Use the logging module instead.
+"""
+dictionaries = "en_US,python,technical"
+
+[tools.isort]
+line_length = 79
+profile = "black"
+sections = ["FUTURE", "STDLIB", "THIRDPARTY", "FIRSTPARTY", "LOCALFOLDER"]
+known_first_party= ["mutablesecurity"]
+known_local_folder = ["agent"]
+
+[tool.mypy]
+python_version = "3.9"
+files = [
+  "agent",
+  "tests"
+]
+show_error_codes = true
+namespace_packages = true
+explicit_package_bases = true
+ignore_missing_imports = true
+
+[tool.pylint.MASTER]
+init-hook="import sys; sys.path.append('.'); sys.path.append('./agent'); sys.path.append('./agent/mutablesecurity')"
+
+[tool.pylint.MESSAGES_CONTROL]
+disable="missing-function-docstring,missing-class-docstring,missing-module-docstring"
+
+[tool.pytest.ini_options]
+pythonpath = [
+    ".",
+    "agent",
+    "others",
+    "tests"
+]
+
+[tool.pylint.SPELLING]
+spelling-dict = "en_US"
+spelling-private-dict-file = "whitelist.txt"
+
+[tool.coverage.run]
+omit = [
+    "tests/*",
+]
