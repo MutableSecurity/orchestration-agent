@@ -1,0 +1,13 @@
+[Unit]
+Description=MutableSecurity's agent for running on orchestration hosts
+Documentation=https://app.mutablesecurity.io/docs
+After=network.target
+
+[Service]
+Type=simple
+User=root
+Group=root
+WorkingDirectory=/root/orchestration-agent
+Environment=PYTHONPATH=/root/orchestration-agent/agent
+ExecStart=/root/target-agent/.venv/bin/python agent/agent/agent.py
+Restart=on-failure

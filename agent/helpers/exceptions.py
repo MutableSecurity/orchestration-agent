@@ -1,4 +1,4 @@
-from mutablesecurity.helpers.exceptions import MutableSecurityException
+from agent.mutablesecurity.helpers.exceptions import MutableSecurityException
 
 
 class HostsManagementException(MutableSecurityException):

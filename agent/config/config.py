@@ -1,38 +1,38 @@
-from mutablesecurity.config import (
+from agent.mutablesecurity.config.config import (
     ConfigurationKey,
-    GenericConfigurationManager,
+    ConfigurationManager as GenericConfigurationManager,
 )
-from mutablesecurity.helpers.data_type import IntegerDataType, StringDataType
+from agent.mutablesecurity.helpers.data_type import IntegerDataType, StringDataType
 
+from enum import Enum
 
 class ConfigurationManager(GenericConfigurationManager):
-    """Class defining the configuration used in MutableSecurity."""
+    class ConfigurationKeys(Enum):
+        """Enumeration for all the keys from the configuration file."""
 
-    KEYS = [
-        ConfigurationKey(
+        BIND_ADDRESS = ConfigurationKey(
             "bind_address",
             StringDataType,
             default_value="0.0.0.0",  # noqa: S104
-        ),
-        ConfigurationKey(
+        )
+        BIND_PORT = ConfigurationKey(
             "bind_port",
             IntegerDataType,
             default_value=40400,
-        ),
-        ConfigurationKey(
+        )
+        EMAIL = ConfigurationKey(
             "email",
             StringDataType,
-            default_value=False,
-        ),
-        ConfigurationKey(
+            default_value="",
+        )
+        PASSWORD = ConfigurationKey(
             "password",
             StringDataType,
-            default_value=False,
-        ),
-    ]
-    FILENAME = ".mutablesecurity"
+            default_value="",
+        )
 
     def __init__(self) -> None:
         super().__init__(
-            ConfigurationManager.KEYS, ConfigurationManager.FILENAME
+            ".mutablesecurity",
+            ConfigurationManager, 
         )

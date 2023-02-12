@@ -17,7 +17,7 @@ ORCHESTRATOR_REPORT_ROUTE = "/report"
 
 
 @flask.route(ORCHESTRATOR_REPORT_ROUTE, methods=["POST"])
-def hello_world() -> FlaskResponse:
+def report() -> FlaskResponse:
     raw_data = request.get_json(silent=True)
     if raw_data is None:
         return BadRequest()

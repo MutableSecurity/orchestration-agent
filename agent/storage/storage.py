@@ -38,7 +38,7 @@ class Storage:
         token = self.user["idToken"]
         timestamp = self.__get_utc_timestamp()
 
-        self.database.child("UserData").child(local_id).child(timestamp).set(
+        self.database.child("dash").child(local_id).child("misc").child(timestamp).set(
             data, token
         )
 

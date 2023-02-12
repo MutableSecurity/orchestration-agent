@@ -1,9 +1,9 @@
 import string
 import typing
 
-from mutablesecurity.helpers.exceptions import YAMLFileNotExistsException
-from mutablesecurity.helpers.type_hints import StringMatrix
-from mutablesecurity.helpers.yaml_parser import dump_to_file, load_from_file
+from agent.mutablesecurity.helpers.exceptions import YAMLFileNotExistsException
+from agent.mutablesecurity.helpers.type_hints import StringMatrix
+from agent.mutablesecurity.helpers.yaml_parser import dump_to_file, load_from_file
 
 from agent.helpers.exceptions import (
     IdentifierAlreadyPresentException,

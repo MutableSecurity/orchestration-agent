@@ -1,6 +1,6 @@
 import click
-from mutablesecurity.cli.printer import Printer
-from mutablesecurity.helpers.exceptions import MutableSecurityException
+from agent.mutablesecurity.cli.printer import Printer
+from agent.mutablesecurity.helpers.exceptions import MutableSecurityException
 from rich.console import Console
 
 from agent.hosts_manager import HostsManager
